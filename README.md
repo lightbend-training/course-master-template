@@ -17,4 +17,14 @@ It has the following projects defined:
 
 - **exercise_000_*** and **exercise_001_***
   These are two sample projects (which depend on `common`)
+  
+# Documentation
+
+For more detailed information on how to use this template, the recommended workflow to maintain and evolve a training course, please refer to https://github.com/lightbend-training/course-management-tools
+
+# License & Support
+
+Copyright © 2016 Lightbend, Inc. This software is provided under the Apache 2.0 license.
+
+**NO COMMERCIAL SUPPORT OR ANY OTHER FORM OF SUPPORT IS OFFERED ON THIS SOFTWARE BY LIGHTBEND, Inc.**
 
