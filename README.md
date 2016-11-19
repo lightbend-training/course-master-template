@@ -3,7 +3,7 @@
 # Introduction
 
 This template project can be used a the basis for building a course or
-alternatively, to create a multi-stop demo of an application or software
+alternatively, to create a multi-step demo of an application or software
 module.
 
 It has the following projects defined:
