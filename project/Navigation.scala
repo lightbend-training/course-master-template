@@ -70,10 +70,14 @@ object Navigation {
         newState
       } catch {
         case e: java.io.FileNotFoundException =>
-          val mark = mapExercises(state).head._1
-          val cmd: String = s"project $mark"
-          val newState = Command.process(cmd, state)
-          newState
+          val mark = mapExercises(state).toList.map(_._1).sorted.headOption
+          if (mark.isDefined) {
+            val cmd: String = s"project ${mark.get}"
+            Command.process(cmd, state)
+          } else {
+            println(s"ERROR: No exercises found in repo")
+            state
+          }
       }
     }
   }
