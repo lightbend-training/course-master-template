@@ -16,19 +16,13 @@ object StudentCommandsPlugin extends AutoPlugin {
     Seq(
       commands in Global ++=
         Seq(
-          Man.man,
-          Navigation.nextExercise, Navigation.prevExercise, Navigation.gotoExerciseNr,
-          Pssr.pullSolution, Pssr.pullTemplate, Pssr.restoreState,
-          Pssr.savedStates, Pssr.saveState, Pssr.showExerciseId
+          Man.man
         ),
       onLoad in Global := {
         val state = (onLoad in Global).value
         Navigation.loadBookmark compose(Navigation.setupNavAttrs compose state)
       }
-    ) ++
-  AdditionalSettings.initialCmdsConsole ++
-  AdditionalSettings.initialCmdsTestConsole ++
-  AdditionalSettings.cmdAliases
+    )
 
   override lazy val projectSettings =
     Seq(
