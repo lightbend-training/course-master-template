@@ -21,6 +21,9 @@ object CommonSettings {
     parallelExecution in ThisBuild := false,
     parallelExecution in GlobalScope := false,
     libraryDependencies ++= Dependencies.dependencies
-  ) ++ AdditionalSettings.cmdAliases
+  ) ++
+    AdditionalSettings.initialCmdsConsole ++
+    AdditionalSettings.initialCmdsTestConsole ++
+    AdditionalSettings.cmdAliases
 
 }

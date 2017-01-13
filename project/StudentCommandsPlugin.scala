@@ -1,27 +1,28 @@
 package sbtstudent
 
+import sbt.Keys._
 import sbt._
-import Keys._
-import Navigation.{ loadBookmark, setupNavAttrs }
-import scala.Console
-import scala.util.matching._
+import Navigation.{loadBookmark, setupNavAttrs}
 
-object StudentCommandPlugin extends AutoPlugin {
+import scala.Console
+
+object StudentCommandsPlugin extends AutoPlugin {
+
   override val requires = sbt.plugins.JvmPlugin
   override val trigger: PluginTrigger = allRequirements
   object autoImport {
   }
   override lazy val globalSettings =
     Seq(
-      commands in Global ++= Seq(Man.man, Navigation.nextExercise, Navigation.prevExercise),
+      commands in Global ++=
+        Seq(
+          Man.man
+        ),
       onLoad in Global := {
         val state = (onLoad in Global).value
-        loadBookmark compose(setupNavAttrs compose state)
+        Navigation.loadBookmark compose(Navigation.setupNavAttrs compose state)
       }
-    ) ++
-      AdditionalSettings.initialCmdsConsole ++
-      AdditionalSettings.initialCmdsTestConsole ++
-      AdditionalSettings.cmdAliases
+    )
 
   override lazy val projectSettings =
     Seq(
