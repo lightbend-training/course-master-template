@@ -1,7 +1,6 @@
 package sbtstudent
 
 import sbt._
-import Keys._
 
 object StudentKeys {
   val bookmarkKeyName = "bookmark"

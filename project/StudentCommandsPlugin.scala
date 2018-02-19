@@ -2,7 +2,7 @@ package sbtstudent
 
 import sbt.Keys._
 import sbt._
-import Navigation.{loadBookmark, setupNavAttrs}
+import stbstudent.MPSelection
 
 import scala.Console
 
@@ -16,7 +16,7 @@ object StudentCommandsPlugin extends AutoPlugin {
     Seq(
       commands in Global ++=
         Seq(
-          Man.man
+          Man.man, MPSelection.activateAllExercises, MPSelection.setActiveExerciseNr
         ),
       onLoad in Global := {
         val state = (onLoad in Global).value
@@ -29,8 +29,8 @@ object StudentCommandsPlugin extends AutoPlugin {
       shellPrompt := { state =>
         val base: File = Project.extract(state).get(sourceDirectory)
         val basePath: String = base + "/test/resources/README.md"
-        val exercise = Console.BLUE + IO.readLines(new sbt.File(basePath)).head + Console.RESET
-        val manRmnd = Console.RED + "man [e]" + Console.RESET
+        val exercise = Console.GREEN + IO.readLines(new sbt.File(basePath)).head + Console.RESET
+        val manRmnd = Console.GREEN + "man [e]" + Console.RESET
         val prjNbrNme = IO.readLines(new sbt.File(new sbt.File(Project.extract(state).structure.root), ".courseName")).head
         s"$manRmnd > $prjNbrNme > $exercise > "
       }

@@ -3,11 +3,8 @@ package sbtstudent
 /**
   * Copyright © 2014, 2015, 2016 Lightbend, Inc. All rights reserved. [http://www.typesafe.com]
   */
-import StudentKeys._
-import sbt.Keys._
-import sbt._
 
-import scala.Console
+import sbt._
 
 object Navigation {
 

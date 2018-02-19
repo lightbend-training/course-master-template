@@ -1,11 +1,13 @@
 package sbtstudent
 
 /**
-  * Copyright © 2014, 2015 Typesafe, Inc. All rights reserved. [http://www.typesafe.com]
+  * Copyright © 2014, 2015, 2016 Lightbend, Inc. All rights reserved. [http://www.typesafe.com]
   */
+
+import sbt.Keys._
 import sbt._
-import Keys._
-import complete.DefaultParsers._
+import sbt.complete.DefaultParsers._
+
 import scala.Console
 import scala.util.matching._
 
@@ -45,6 +47,7 @@ object Man {
   val numberRx: Regex = """^(\d{1,3})(\. )""".r
   val urlRx: Regex = """(\()(htt[a-zA-Z0-9\-\.\/:]*)(\))""".r
   val ConBlue = Console.BLUE
+  val ConGreen = Console.GREEN
   val ConMagenta = Console.MAGENTA
   val ConRed = Console.RED
   val ConReset = Console.RESET
@@ -57,19 +60,19 @@ object Man {
         Console.println(ConRed + ln + ConReset)
       case ln if !inCodeFence && ln.matches(".*" + bulletRx.toString() + ".*") =>
         val lne = bulletRx replaceAllIn (ln, ConRed + bulletRx.toString() + ConReset)
-        Console.println(rxFormat(rxFormat(rxFormat(lne, codeRx, ConBlue), boldRx, ConYellow), urlRx, ConMagenta,
+        Console.println(rxFormat(rxFormat(rxFormat(lne, codeRx, ConGreen), boldRx, ConYellow), urlRx, ConMagenta,
           keepWrapper = true))
       case ln if !inCodeFence && ln.matches(numberRx.toString() + ".*") =>
         val lne = numberRx replaceAllIn (ln, _ match { case numberRx(n, s) => f"$ConRed$n$s$ConReset" })
-        Console.println(rxFormat(rxFormat(lne, codeRx, ConBlue), boldRx, ConYellow))
+        Console.println(rxFormat(rxFormat(lne, codeRx, ConGreen), boldRx, ConYellow))
       case ln if ln.matches(fenceStartRx.toString()) =>
         inCodeFence = true
-        Console.print(ConBlue)
+        Console.print(ConGreen)
       case ln if ln.matches(fenceEndRx.toString()) =>
         inCodeFence = false
         Console.print(ConReset)
       case ln =>
-        Console.println(rxFormat(rxFormat(rxFormat(ln, codeRx, ConBlue), boldRx, ConYellow), urlRx, ConMagenta,
+        Console.println(rxFormat(rxFormat(rxFormat(ln, codeRx, ConGreen), boldRx, ConYellow), urlRx, ConMagenta,
           keepWrapper = true))
     }
   }
@@ -89,3 +92,4 @@ object Man {
   }
 
 }
+
