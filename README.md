@@ -27,4 +27,3 @@ For more detailed information on how to use this template, the recommended workf
 Copyright © 2016 Lightbend, Inc. This software is provided under the Apache 2.0 license.
 
 **NO COMMERCIAL SUPPORT OR ANY OTHER FORM OF SUPPORT IS OFFERED ON THIS SOFTWARE BY LIGHTBEND, Inc.**
-
